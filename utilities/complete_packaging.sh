@@ -57,6 +57,9 @@ export tisunpack_osx="${tispack_folder}/osx"
 export tile2ee_win32="${tile2ee_folder}/win32"
 export tile2ee_unix="${tile2ee_folder}/unix"
 export tile2ee_osx="${tile2ee_folder}/osx"
+export tileconv_win32="${tileconv_folder}/win32"
+export tileconv_unix="${tileconv_folder}/unix"
+export tileconv_osx="${tileconv_folder}/osx"
 export iconv="${iconv_folder}"
 export desktop_ini="${mod_folder}/desktop.ini"
 export folder_icon="${ico_folder}/g3.ico"
@@ -67,7 +70,7 @@ then
   echo "Creating ${win_archive} for Windows..."
 
   # /* create the windows zip archive */
-  zip -q -r "${win_archive}" "${mod_folder}" "${mod_setup}.exe" -x "${sox}" "${tisunpack_unix}/*" "${tisunpack_osx}/*" "${tile2ee_unix}/*" "${tile2ee_osx}/*"
+  zip -q -r "${win_archive}" "${mod_folder}" "${mod_setup}.exe" -x "${sox}" "${tisunpack_unix}/*" "${tisunpack_osx}/*" "${tile2ee_unix}/*" "${tile2ee_osx}/*" "${tileconv_unix}/*" "${tileconv_osx}/*"
   [ -f "${mod_folder}.tp2" ] && zip -q "${win_archive}" "${mod_folder}.tp2"
   [ -f "${mod_setup}.tp2" ] && zip -q "${win_archive}" "${mod_setup}.tp2"
 
@@ -79,7 +82,7 @@ then
   echo "Creating win-${win_archive} for Windows..."
 
   # /* create the windows zip archive */
-  zip -q -r "win-${win_archive}" "${mod_folder}" "${mod_setup}.exe" -x "${sox}" "${tisunpack_unix}/*" "${tisunpack_osx}/*" "${tile2ee_unix}/*" "${tile2ee_osx}/*"
+  zip -q -r "win-${win_archive}" "${mod_folder}" "${mod_setup}.exe" -x "${sox}" "${tisunpack_unix}/*" "${tisunpack_osx}/*" "${tile2ee_unix}/*" "${tile2ee_osx}/*" "${tileconv_unix}/*" "${tileconv_osx}/*"
   [ -f "${mod_folder}.tp2" ] && zip -q "${win_archive}" "${mod_folder}.tp2"
   [ -f "${mod_setup}.tp2" ] && zip -q "${win_archive}" "${mod_setup}.tp2"
 
@@ -92,7 +95,7 @@ then
   echo "Creating ${osx_archive} for OS X..."
 
   # /* create OS X archive */
-  tar -c --exclude "${oggdec}" --exclude "${tisunpack_win32}" --exclude "${tisunpack_unix}" --exclude "${tile2ee_win32}" --exclude "${tile2ee_unix}" --exclude "${iconv}" --exclude "${desktop_ini}" --exclude "${folder_icon}" --exclude "${sfx_banner}" -f "${osx_archive_tar}" -- "${mod_folder}" "${mod_setup}" "${mod_setup}.command"
+  tar -c --exclude "${oggdec}" --exclude "${tisunpack_win32}" --exclude "${tisunpack_unix}" --exclude "${tile2ee_win32}" --exclude "${tile2ee_unix}" --exclude "${tileconv_win32}" --exclude "${tileconv_unix}" --exclude "${iconv}" --exclude "${desktop_ini}" --exclude "${folder_icon}" --exclude "${sfx_banner}" -f "${osx_archive_tar}" -- "${mod_folder}" "${mod_setup}" "${mod_setup}.command"
   [ -f "${mod_folder}.tp2" ] && tar -r -f "${osx_archive_tar}" -- "${mod_folder}.tp2"
   [ -f "${mod_setup}.tp2" ] && tar -r -f "${osx_archive_tar}" -- "${mod_setup}.tp2"
   gzip --best "${osx_archive_tar}"
@@ -107,7 +110,7 @@ then
   echo "Creating ${lin_archive} for Linux..."
 
   # /* create linux archive */
-  tar -c --exclude "${oggdec}" --exclude "${sox}" --exclude "${tisunpack_win32}" --exclude "${tisunpack_osx}" --exclude "${tile2ee_win32}" --exclude "${tile2ee_osx}" --exclude "${iconv}" --exclude "${desktop_ini}" --exclude "${folder_icon}" --exclude "${sfx_banner}" -f "${lin_archive_tar}" -- "${mod_folder}"
+  tar -c --exclude "${oggdec}" --exclude "${sox}" --exclude "${tisunpack_win32}" --exclude "${tisunpack_osx}" --exclude "${tile2ee_win32}" --exclude "${tile2ee_osx}" --exclude "${tileconv_win32}" --exclude "${tileconv_osx}" --exclude "${iconv}" --exclude "${desktop_ini}" --exclude "${folder_icon}" --exclude "${sfx_banner}" -f "${lin_archive_tar}" -- "${mod_folder}"
   [ -f "${mod_folder}.tp2" ] && tar -r -f "${lin_archive_tar}" -- "${mod_folder}.tp2"
   [ -f "${mod_setup}.tp2" ] && tar -r -f "${lin_archive_tar}" -- "${mod_setup}.tp2"
   gzip --best "${lin_archive_tar}"
